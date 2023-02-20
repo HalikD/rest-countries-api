@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 2.5rem;
-  margin-bottom: 2rem;
+  padding: 1.5rem 0;
 `;
 
 const SearchSettings = ({ handleSearch }) => {

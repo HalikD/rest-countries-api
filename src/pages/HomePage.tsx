@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
 
 import SearchSettings from "@/components/SearchSettings/SearchSettings";
 import CardList from "@/components/CardList/CardList";
 import { fetchAllCountries } from "@/http/countriesAPI";
 import CardItem from "@/components/CardItem/CardItem";
 
-import { processedCountries } from "@/utils/countryProcessing";
-
-const Wrapper = styled.div`
-  padding: 2rem 1rem;
-`;
+import { processedAllCountries } from "@/utils/countryProcessing";
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
@@ -18,7 +13,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchAllCountries()
-      .then((unProcessedData) => processedCountries(unProcessedData))
+      .then((unProcessedData) => processedAllCountries(unProcessedData))
       .then((processedData) => setCountries(processedData));
   }, []);
 
@@ -44,14 +39,14 @@ const HomePage = () => {
   }, [countries]);
 
   return (
-    <Wrapper>
+    <>
       <SearchSettings handleSearch={handleSearch} />
       <CardList>
         {filteredCountries.map((country) => (
           <CardItem key={country.img} img={country.img} name={country.name} info={country.info} />
         ))}
       </CardList>
-    </Wrapper>
+    </>
   );
 };
 

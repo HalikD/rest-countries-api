@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  padding: 2rem;
+  padding: 2rem 1rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
