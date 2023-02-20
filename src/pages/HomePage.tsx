@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import SearchSettings from "@/components/SearchSettings/SearchSettings";
 import CardList from "@/components/CardList/CardList";
@@ -10,6 +11,7 @@ import { processedAllCountries } from "@/utils/countryProcessing";
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState(countries);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAllCountries()
@@ -43,7 +45,13 @@ const HomePage = () => {
       <SearchSettings handleSearch={handleSearch} />
       <CardList>
         {filteredCountries.map((country) => (
-          <CardItem key={country.img} img={country.img} name={country.name} info={country.info} />
+          <CardItem
+            onClick={() => navigate(`/country/${country.name}`)}
+            key={country.img}
+            img={country.img}
+            name={country.name}
+            info={country.info}
+          />
         ))}
       </CardList>
     </>

@@ -15,7 +15,8 @@ const Wrapper = styled.div`
 const CountryImage = styled.img`
   display: block;
   width: 100%;
-  height: 200px;
+  height: 250px;
+  box-shadow: var(--shadow);
 `;
 
 const CountryInfo = styled.div`
@@ -51,6 +52,7 @@ const CountryBorder = styled.div`
   flex-direction: column;
 
   & > span {
+    font-weight: var(--fw-normal);
     margin-bottom: 1.5rem;
   }
 `;
@@ -69,12 +71,13 @@ interface CountryProps {
   borders: string[];
 }
 
-const Country = ({ name, img, mainInfo, altInfo, borders }: CountryProps) => {
+const Country = ({ name, img, mainInfo, altInfo, borders = [] }: CountryProps) => {
   const [borderCountries, setBorderCountries] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchByCodes(borders)
       .then((codes) => codeToName(codes))
       .then((countries) => setBorderCountries(countries));

@@ -6,7 +6,7 @@ import { processedOneCountry } from "@/utils/countryProcessing";
 import Button from "@/components/Button/Button";
 import { FaArrowLeft } from "react-icons/fa";
 
-const Detail = () => {
+const DetailPage = () => {
   const [country, setCountry] = useState(null);
 
   const { name } = useParams();
@@ -29,4 +29,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default DetailPage;

@@ -13,6 +13,7 @@ const CardImage = styled.img`
   width: 100%;
   height: 180px;
   object-fit: cover;
+  box-shadow: var(--shadow);
 `;
 
 const CardInfo = styled.div`
@@ -40,14 +41,15 @@ const CardInfoItem = styled.li`
 `;
 
 interface CardItemProps {
+  onClick: () => void;
   img: string;
   name: string;
   info: { Population: string; Rating: string; Capital: string };
 }
 
-const CardItem = ({ img, name, info }: CardItemProps) => {
+const CardItem = ({ onClick, img, name, info }: CardItemProps) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <CardImage src={img} />
       <CardInfo>
         <CardName>{name}</CardName>

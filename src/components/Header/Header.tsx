@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 1rem;
+  box-shadow: var(--shadow);
 `;
 
 const Title = styled(Link).attrs({ to: "/" })`

@@ -24,7 +24,7 @@ export const processedOneCountry = (country) => {
       Capital: country.capital,
     },
     altInfo: {
-      ["Top Level Domain"]: country.tld,
+      ["Top Level Domain"]: country.tld.join(", "),
       Currencies: Object.values(country.currencies)[0]["name"],
       Languages: Object.values(country.languages).join(", "),
     },
