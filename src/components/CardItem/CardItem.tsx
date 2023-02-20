@@ -4,6 +4,8 @@ const Wrapper = styled.div`
   background-color: var(--color-elem);
   border-radius: 0.3rem;
   cursor: pointer;
+  box-shadow: var(--shadow);
+  overflow: hidden;
 `;
 
 const CardImage = styled.img`
@@ -11,7 +13,6 @@ const CardImage = styled.img`
   width: 100%;
   height: 180px;
   object-fit: cover;
-  overflow: hidden;
 `;
 
 const CardInfo = styled.div`
@@ -52,7 +53,7 @@ const CardItem = ({ img, name, info }: CardItemProps) => {
         <CardName>{name}</CardName>
         <CardInfoList>
           {Object.entries(info).map(([title, value]) => (
-            <CardInfoItem>
+            <CardInfoItem key={title}>
               <span>{title}: </span>
               {value}
             </CardInfoItem>

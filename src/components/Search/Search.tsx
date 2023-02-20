@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
-import { useEffect } from "react";
 
 const Wrapper = styled.label`
   width: 100%;
   background-color: var(--color-elem);
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   display: flex;
   align-items: center;
   border-radius: 0.3rem;
+  box-shadow: var(--shadow);
 `;
 
 const Input = styled.input.attrs({ type: "search", placeholder: "Search for a country..." })`
+  width: 100%;
   background-color: var(--color-elem);
   color: var(--color-text);
   border: none;

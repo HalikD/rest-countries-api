@@ -22,25 +22,33 @@ const HomePage = () => {
       .then((processedData) => setCountries(processedData));
   }, []);
 
-  const handleSearch = (search, region) => {
-    let foundCountries = [...countries];
-    if (region !== "All") {
-      foundCountries = foundCountries.filter((country) => country.info["Region"] === region);
+  const handleSearch = (search = "", region = "All") => {
+    let foundCountries;
+    if (region === "All") {
+      foundCountries = countries.filter((country) =>
+        country.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredCountries(foundCountries);
+      return;
     }
 
-    foundCountries = foundCountries.filter((country) =>
-      country.name.toLowerCase().includes(search.toLowerCase())
-    );
+    foundCountries = countries
+      .filter((country) => country.info["Region"] === region)
+      .filter((country) => country.name.toLowerCase().includes(search.toLowerCase()));
 
     setFilteredCountries(foundCountries);
   };
+
+  useEffect(() => {
+    handleSearch();
+  }, [countries]);
 
   return (
     <Wrapper>
       <SearchSettings handleSearch={handleSearch} />
       <CardList>
         {filteredCountries.map((country) => (
-          <CardItem img={country.img} name={country.name} info={country.info} />
+          <CardItem key={country.img} img={country.img} name={country.name} info={country.info} />
         ))}
       </CardList>
     </Wrapper>

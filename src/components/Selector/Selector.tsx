@@ -10,6 +10,7 @@ const Wrapper = styled.select.attrs({ placeholder: "qqqq" })`
   outline: none;
   border: none;
   cursor: pointer;
+  box-shadow: var(--shadow);
 `;
 
 const Option = styled.option`

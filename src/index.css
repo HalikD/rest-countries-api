@@ -14,12 +14,14 @@ body[data-theme="dark"] {
   --color-text: hsl(0, 0%, 100%);
   --color-bg: hsl(207, 26%, 17%);
   --color-elem: hsl(209, 23%, 22%);
+  --shadow: hsla(207, 3%, 10%, 0.7) 0 0 8px;
 }
 
 body[data-theme="light"] {
   --color-text: hsl(200, 15%, 8%);
   --color-bg: hsl(0, 0%, 98%);
   --color-elem: hsl(0, 0%, 100%);
+  --shadow: hsla(0, 2%, 46%, 0.7) 0 0 10px;
 }
 
 * {

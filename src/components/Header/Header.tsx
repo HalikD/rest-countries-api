@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FaMoon, FaRegMoon } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const HeaderEl = styled.header`
   background-color: var(--color-elem);
@@ -46,7 +46,7 @@ const Header = () => {
       <Wrapper>
         <Title>Where in the world?</Title>
         <Mode onClick={toggleTheme}>
-          {theme === "dark" ? <FaMoon /> : <FaRegMoon />}
+          {theme === "dark" ? <FaMoon /> : <FaSun />}
           <Text>{theme} Mode</Text>
         </Mode>
       </Wrapper>
