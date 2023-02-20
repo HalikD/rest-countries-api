@@ -18,15 +18,12 @@ const Option = styled.option`
 
 interface SelectorProps {
   options: { label: string; value: string }[];
-  setSelect: (value: string) => void;
+  setRegion: (value: string) => void;
 }
 
-const Selector = ({ options, setSelect }: SelectorProps) => {
+const Selector = ({ options, setRegion }: SelectorProps) => {
   return (
-    <Wrapper onChange={(e) => setSelect(e.target.value)}>
-      <option value="" disabled>
-        Filter by Region
-      </option>
+    <Wrapper onChange={(e) => setRegion(e.target.value)}>
       {options.map((item) => (
         <Option key={item.value} value={item.value}>
           {item.label}

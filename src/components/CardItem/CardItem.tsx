@@ -11,6 +11,7 @@ const CardImage = styled.img`
   width: 100%;
   height: 180px;
   object-fit: cover;
+  overflow: hidden;
 `;
 
 const CardInfo = styled.div`
@@ -39,8 +40,8 @@ const CardInfoItem = styled.li`
 
 interface CardItemProps {
   img: string;
-  title: string;
-  info: string[];
+  name: string;
+  info: { Population: string; Rating: string; Capital: string };
 }
 
 const CardItem = ({ img, name, info }: CardItemProps) => {
@@ -50,10 +51,10 @@ const CardItem = ({ img, name, info }: CardItemProps) => {
       <CardInfo>
         <CardName>{name}</CardName>
         <CardInfoList>
-          {info.map((item) => (
+          {Object.entries(info).map(([title, value]) => (
             <CardInfoItem>
-              <span>{item.title}: </span>
-              {item.desc}
+              <span>{title}: </span>
+              {value}
             </CardInfoItem>
           ))}
         </CardInfoList>

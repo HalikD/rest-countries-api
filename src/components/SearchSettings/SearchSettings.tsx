@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Search from "@/components/Search/Search";
 import Selector from "@/components/Selector/Selector";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const options = [
+  { label: "All", value: "All" },
   { label: "Africa", value: "Africa" },
-  { label: "America", value: "America" },
+  { label: "America", value: "Americas" },
   { label: "Asia", value: "Asia" },
   { label: "Europe", value: "Europe" },
   { label: "Oceania", value: "Oceania" },
@@ -20,14 +22,20 @@ const Wrapper = styled.div`
   margin-bottom: 2rem;
 `;
 
-const SearchSettings = () => {
+const SearchSettings = ({ handleSearch }) => {
   const [search, setSearch] = useState("");
-  const [select, setSelect] = useState("");
+  const [region, setRegion] = useState("");
+
+  const debouncedSearch = useDebounce(search, 300);
+
+  useEffect(() => {
+    handleSearch(debouncedSearch, region);
+  }, [debouncedSearch, region]);
 
   return (
     <Wrapper>
       <Search search={search} setSearch={setSearch} />
-      <Selector options={options} setSelect={setSelect} />
+      <Selector options={options} setRegion={setRegion} />
     </Wrapper>
   );
 };

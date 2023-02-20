@@ -1,6 +1,6 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
+import { useEffect } from "react";
 
 const Wrapper = styled.label`
   width: 100%;
