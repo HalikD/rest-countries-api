@@ -9,17 +9,18 @@ const Wrapper = styled.div`
 const CardImage = styled.img`
   display: block;
   width: 100%;
-  height: 150px;
+  height: 180px;
   object-fit: cover;
 `;
 
 const CardInfo = styled.div`
-  padding: 1rem;
+  padding: 1.5rem 1rem 2rem;
 `;
 
-const CardTitle = styled.h2`
+const CardName = styled.h2`
   font-size: var(--fs-md);
   font-weight: var(--fw-bold);
+  margin-bottom: 1rem;
 `;
 
 const CardInfoList = styled.ul`
@@ -28,23 +29,33 @@ const CardInfoList = styled.ul`
 
 const CardInfoItem = styled.li`
   line-height: 1.5rem;
+  font-size: var(--fs-sm);
   font-weight: var(--fw-light);
 
   & > span {
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-normal);
   }
 `;
 
-const CardItem = () => {
+interface CardItemProps {
+  img: string;
+  title: string;
+  info: string[];
+}
+
+const CardItem = ({ img, name, info }: CardItemProps) => {
   return (
     <Wrapper>
-      <CardImage />
+      <CardImage src={img} />
       <CardInfo>
-        <CardTitle>Title</CardTitle>
+        <CardName>{name}</CardName>
         <CardInfoList>
-          <CardInfoItem>
-            <span></span>
-          </CardInfoItem>
+          {info.map((item) => (
+            <CardInfoItem>
+              <span>{item.title}: </span>
+              {item.desc}
+            </CardInfoItem>
+          ))}
         </CardInfoList>
       </CardInfo>
     </Wrapper>

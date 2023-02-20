@@ -24,11 +24,13 @@ interface SelectorProps {
 const Selector = ({ options, setSelect }: SelectorProps) => {
   return (
     <Wrapper onChange={(e) => setSelect(e.target.value)}>
-      <option value="" disabled selected>
+      <option value="" disabled>
         Filter by Region
       </option>
       {options.map((item) => (
-        <Option value={item.value}>{item.label}</Option>
+        <Option key={item.value} value={item.value}>
+          {item.label}
+        </Option>
       ))}
     </Wrapper>
   );
