@@ -6,20 +6,30 @@ import Button from "../Button/Button";
 import { codeToName } from "@/utils/countryProcessing";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   padding: 4rem 0;
   gap: 3rem;
+
+  @media screen and (min-width: 767px) {
+    grid-template-columns: minmax(100px, 400px) 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: minmax(400px, 600px) 1fr;
+  }
 `;
 
 const CountryImage = styled.img`
   display: block;
   width: 100%;
-  height: 250px;
-  box-shadow: var(--shadow);
+  height: 100%;
+  object-fit: contain;
 `;
 
-const CountryInfo = styled.div`
+const CountryBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -28,6 +38,20 @@ const CountryInfo = styled.div`
 
 const CountryName = styled.h2`
   font-weight: var(--fw-bold);
+`;
+
+const CountryInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    gap: 6rem;
+  }
 `;
 
 const CountryInfoList = styled.ul`
@@ -54,11 +78,23 @@ const CountryBorder = styled.div`
   & > span {
     font-weight: var(--fw-normal);
     margin-bottom: 1.5rem;
+
+    @media screen and (min-width: 767px) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
 const CountryBorderList = styled.div`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
 `;
@@ -85,24 +121,27 @@ const Country = ({ name, img, mainInfo, altInfo, borders = [] }: CountryProps) =
   return (
     <Wrapper>
       <CountryImage src={img} alt={name} />
-      <CountryInfo>
+      <CountryBody>
         <CountryName>{name}</CountryName>
-        <CountryInfoList>
-          {Object.entries(mainInfo).map(([title, value]) => (
-            <CountryInfoItem key={title}>
-              <span>{title}: </span>
-              {value}
-            </CountryInfoItem>
-          ))}
-        </CountryInfoList>
-        <CountryInfoList>
-          {Object.entries(altInfo).map(([title, values]) => (
-            <CountryInfoItem key={title}>
-              <span>{title}: </span>
-              {values}
-            </CountryInfoItem>
-          ))}
-        </CountryInfoList>
+        <CountryInfo>
+          <CountryInfoList>
+            {Object.entries(mainInfo).map(([title, value]) => (
+              <CountryInfoItem key={title}>
+                <span>{title}: </span>
+                {value}
+              </CountryInfoItem>
+            ))}
+          </CountryInfoList>
+          <CountryInfoList>
+            {Object.entries(altInfo).map(([title, values]) => (
+              <CountryInfoItem key={title}>
+                <span>{title}: </span>
+                {values}
+              </CountryInfoItem>
+            ))}
+          </CountryInfoList>
+        </CountryInfo>
+
         <CountryBorder>
           <span>Border Countries:</span>
           {!borders.length ? (
@@ -117,7 +156,7 @@ const Country = ({ name, img, mainInfo, altInfo, borders = [] }: CountryProps) =
             </CountryBorderList>
           )}
         </CountryBorder>
-      </CountryInfo>
+      </CountryBody>
     </Wrapper>
   );
 };

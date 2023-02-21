@@ -9,6 +9,10 @@ const Wrapper = styled.label`
   align-items: center;
   border-radius: 0.3rem;
   box-shadow: var(--shadow);
+
+  @media screen and (min-width: 767px) {
+    width: 500px;
+  }
 `;
 
 const Input = styled.input.attrs({ type: "search", placeholder: "Search for a country..." })`

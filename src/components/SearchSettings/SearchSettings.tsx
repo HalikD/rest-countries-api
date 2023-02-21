@@ -20,11 +20,18 @@ const Wrapper = styled.div`
   align-items: flex-start;
   gap: 2.5rem;
   padding: 1.5rem 0;
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
 `;
 
 const SearchSettings = ({ handleSearch }) => {
   const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("");
+  const [region, setRegion] = useState("All");
 
   const debouncedSearch = useDebounce(search, 300);
 

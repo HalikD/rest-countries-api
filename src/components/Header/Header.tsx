@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 2rem 1rem;
   box-shadow: var(--shadow);
+
+  @media screen and (min-width: 767px) {
+    padding: 2rem 3rem;
+  }
 `;
 
 const Title = styled(Link).attrs({ to: "/" })`
@@ -20,9 +24,15 @@ const Title = styled(Link).attrs({ to: "/" })`
   font-size: var(--fs-sm);
   text-decoration: none;
   font-weight: var(--fw-normal);
+
+  @media screen and (min-width: 767px) {
+    font-size: var(--fs-md);
+  }
 `;
 
 const Mode = styled.div`
+  display: flex;
+  align-items: center;
   color: var(--color-text);
   font-size: var(--fs-sm);
   cursor: pointer;
