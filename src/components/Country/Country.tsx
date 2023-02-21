@@ -108,7 +108,7 @@ interface CountryProps {
 }
 
 const Country = ({ name, img, mainInfo, altInfo, borders = [] }: CountryProps) => {
-  const [borderCountries, setBorderCountries] = useState([]);
+  const [borderCountries, setBorderCountries] = useState<string[]>([]);
 
   const navigate = useNavigate();
 

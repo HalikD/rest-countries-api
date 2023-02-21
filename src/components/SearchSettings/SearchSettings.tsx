@@ -29,7 +29,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const SearchSettings = ({ handleSearch }) => {
+interface SearchSettingsProps {
+  handleSearch: (search?: string, region?: string) => void;
+}
+
+const SearchSettings = ({ handleSearch }: SearchSettingsProps) => {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("All");
 
