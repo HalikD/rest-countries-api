@@ -44,7 +44,7 @@ interface CardItemProps {
   onClick: () => void;
   img: string;
   name: string;
-  info: { Population: string; Rating: string; Capital: string };
+  info: Record<string, string>;
 }
 
 const CardItem = ({ onClick, img, name, info }: CardItemProps) => {

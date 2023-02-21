@@ -6,17 +6,23 @@ import CardList from "@/components/CardList/CardList";
 import { fetchAllCountries } from "@/http/countriesAPI";
 import CardItem from "@/components/CardItem/CardItem";
 
-import { processedAllCountries } from "@/utils/countryProcessing";
+import { IAllCountries, processedAllCountries } from "@/utils/countryProcessing";
 
 const HomePage = () => {
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState<IAllCountries[]>([]);
   const [filteredCountries, setFilteredCountries] = useState(countries);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     fetchAllCountries()
       .then((unProcessedData) => processedAllCountries(unProcessedData))
-      .then((processedData) => setCountries(processedData));
+      .then((processedData) => {
+        setCountries(processedData);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleSearch = (search = "", region = "All") => {
@@ -43,17 +49,21 @@ const HomePage = () => {
   return (
     <>
       <SearchSettings handleSearch={handleSearch} />
-      <CardList>
-        {filteredCountries.map((country) => (
-          <CardItem
-            onClick={() => navigate(`/country/${country.name}`)}
-            key={country.img}
-            img={country.img}
-            name={country.name}
-            info={country.info}
-          />
-        ))}
-      </CardList>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <CardList>
+          {filteredCountries.map((country) => (
+            <CardItem
+              onClick={() => navigate(`/country/${country.name}`)}
+              key={country.img}
+              img={country.img}
+              name={country.name}
+              info={country.info}
+            />
+          ))}
+        </CardList>
+      )}
     </>
   );
 };

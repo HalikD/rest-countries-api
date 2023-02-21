@@ -1,4 +1,20 @@
-export const processedAllCountries = (data) => {
+import { IFetchManyCountries, IFetchOneCountry } from "@/http/countriesAPI";
+
+export interface IAllCountries {
+  name: string;
+  img: string;
+  info: Record<string, string>;
+}
+
+export interface IOneCountry {
+  name: string;
+  img: string;
+  mainInfo: Record<string, string>;
+  altInfo: Record<string, string>;
+  borders: string[];
+}
+
+export const processedAllCountries = (data: IFetchManyCountries[]) => {
   return data.map((country) => {
     return {
       name: country.name.official,
@@ -12,7 +28,7 @@ export const processedAllCountries = (data) => {
   });
 };
 
-export const processedOneCountry = (country) => {
+export const processedOneCountry = (country: IFetchOneCountry) => {
   return {
     name: country.name.common,
     img: country.flags.png,
@@ -32,6 +48,6 @@ export const processedOneCountry = (country) => {
   };
 };
 
-export const codeToName = (data) => {
+export const codeToName = (data: IFetchManyCountries[]) => {
   return data.map((country) => country.name.common);
 };
