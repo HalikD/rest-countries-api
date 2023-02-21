@@ -35,7 +35,7 @@ interface SearchSettingsProps {
 
 const SearchSettings = ({ handleSearch }: SearchSettingsProps) => {
   const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("All");
+  const [region, setRegion] = useState("");
 
   const debouncedSearch = useDebounce(search, 300);
 
@@ -46,7 +46,7 @@ const SearchSettings = ({ handleSearch }: SearchSettingsProps) => {
   return (
     <Wrapper>
       <Search search={search} setSearch={setSearch} />
-      <Selector options={options} setRegion={setRegion} />
+      <Selector options={options} region={region} setRegion={setRegion} />
     </Wrapper>
   );
 };

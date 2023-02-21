@@ -7,6 +7,7 @@ import { fetchAllCountries } from "@/http/countriesAPI";
 import CardItem from "@/components/CardItem/CardItem";
 
 import { IAllCountries, processedAllCountries } from "@/utils/countryProcessing";
+import Loader from "@/components/Loader/Loader";
 
 const HomePage = () => {
   const [countries, setCountries] = useState<IAllCountries[]>([]);
@@ -25,9 +26,9 @@ const HomePage = () => {
       });
   }, []);
 
-  const handleSearch = (search = "", region = "All") => {
+  const handleSearch = (search = "", region = "") => {
     let foundCountries;
-    if (region === "All") {
+    if (region === "All" || !region) {
       foundCountries = countries.filter((country) =>
         country.name.toLowerCase().includes(search.toLowerCase())
       );
@@ -50,7 +51,7 @@ const HomePage = () => {
     <>
       <SearchSettings handleSearch={handleSearch} />
       {isLoading ? (
-        <h1>Loading...</h1>
+        <Loader />
       ) : (
         <CardList>
           {filteredCountries.map((country) => (

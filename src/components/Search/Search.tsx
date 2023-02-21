@@ -4,7 +4,8 @@ import { FaSearch } from "react-icons/fa";
 const Wrapper = styled.label`
   width: 100%;
   background-color: var(--color-elem);
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
+
   display: flex;
   align-items: center;
   border-radius: 0.3rem;
@@ -19,6 +20,7 @@ const Input = styled.input.attrs({ type: "search", placeholder: "Search for a co
   width: 100%;
   background-color: var(--color-elem);
   color: var(--color-text);
+  font-size: var(--fs-md);
   border: none;
   outline: none;
   margin-left: 1rem;

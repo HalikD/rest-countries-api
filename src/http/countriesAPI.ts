@@ -43,12 +43,10 @@ export const fetchAllCountries = async () => {
 
 export const fetchOneCountry = async (name: string) => {
   const { data } = await axios.get<IFetchOneCountry[]>(ONE_COUNTRY + name + fieldsOneCountry);
-  console.log(data);
   return data;
 };
 
 export const fetchByCodes = async (codes: string[]) => {
   const { data } = await axios.get<IFetchManyCountries[]>(ALPHA_CODE + codes.join(","));
-  console.log(data);
   return data;
 };

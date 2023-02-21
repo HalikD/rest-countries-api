@@ -37,6 +37,10 @@ const Mode = styled.div`
   font-size: var(--fs-sm);
   cursor: pointer;
   text-transform: capitalize;
+
+  @media screen and (min-width: 767px) {
+    font-size: var(--fs-md);
+  }
 `;
 
 const Text = styled.span`
