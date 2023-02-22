@@ -1,10 +1,4 @@
-import { IFetchManyCountries, IFetchOneCountry } from "@/http/countriesAPI";
-
-export interface IAllCountries {
-  name: string;
-  img: string;
-  info: Record<string, string>;
-}
+import { IFetchOneCountry, IFetchManyCountries } from "@/http/countriesAPI";
 
 export interface IOneCountry {
   name: string;

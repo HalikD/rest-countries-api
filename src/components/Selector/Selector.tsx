@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: relative;
+  transition: all 1s;
 `;
 
 const Label = styled.div`
@@ -32,6 +33,7 @@ const Popup = styled.div`
   border-radius: 0.3rem;
   color: var(--color-text);
   box-shadow: var(--shadow);
+  z-index: 10;
 `;
 
 const Option = styled.p`

@@ -36,7 +36,7 @@ const fieldsOneCountry =
 
 const ALPHA_CODE = BASE_URL + "alpha?codes=";
 
-export const fetchAllCountries = async () => {
+export const fetchManyCountries = async () => {
   const { data } = await axios.get<IFetchManyCountries[]>(ALL_COUNTRIES + fieldsAllCountries);
   return data;
 };

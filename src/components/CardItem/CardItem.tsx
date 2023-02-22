@@ -6,6 +6,11 @@ const Wrapper = styled.div`
   cursor: pointer;
   box-shadow: var(--shadow);
   overflow: hidden;
+  transition: transform 1s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 const CardImage = styled.img`

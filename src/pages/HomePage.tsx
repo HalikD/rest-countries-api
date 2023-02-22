@@ -3,27 +3,25 @@ import { useNavigate } from "react-router-dom";
 
 import SearchSettings from "@/components/SearchSettings/SearchSettings";
 import CardList from "@/components/CardList/CardList";
-import { fetchAllCountries } from "@/http/countriesAPI";
 import CardItem from "@/components/CardItem/CardItem";
-
-import { IAllCountries, processedAllCountries } from "@/utils/countryProcessing";
 import Loader from "@/components/Loader/Loader";
 
+import { useAppSelector, useAppDispatch } from "@/hooks/redux";
+
+import { countriesSelect } from "@/store/countries/countriesSlice";
+import { fetchAllCountries } from "@/store/countries/countriesAsyncActions";
+
 const HomePage = () => {
-  const [countries, setCountries] = useState<IAllCountries[]>([]);
+  const { countries, status } = useAppSelector(countriesSelect);
+  const dispatch = useAppDispatch();
+
   const [filteredCountries, setFilteredCountries] = useState(countries);
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchAllCountries()
-      .then((unProcessedData) => processedAllCountries(unProcessedData))
-      .then((processedData) => {
-        setCountries(processedData);
-        setIsLoading(false);
-      });
+    if (countries.length) return;
+    dispatch(fetchAllCountries());
   }, []);
 
   const handleSearch = (search = "", region = "") => {
@@ -50,7 +48,7 @@ const HomePage = () => {
   return (
     <>
       <SearchSettings handleSearch={handleSearch} />
-      {isLoading ? (
+      {status === "loading" ? (
         <Loader />
       ) : (
         <CardList>
