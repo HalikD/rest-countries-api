@@ -1,4 +1,4 @@
-import { RootState } from "./../index";
+import { RootState } from "@/store";
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchAllCountries } from "./countriesAsyncActions";
 import { CountriesState, CountriesStatus } from "./countriesTypes";

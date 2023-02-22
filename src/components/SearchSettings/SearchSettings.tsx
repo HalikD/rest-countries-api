@@ -1,17 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import Search from "@/components/Search/Search";
 import Selector from "@/components/Selector/Selector";
-import { useDebounce } from "@/hooks/useDebounce";
-
-const options = [
-  { label: "All", value: "All" },
-  { label: "Africa", value: "Africa" },
-  { label: "America", value: "Americas" },
-  { label: "Asia", value: "Asia" },
-  { label: "Europe", value: "Europe" },
-  { label: "Oceania", value: "Oceania" },
-];
+import { useAppSelector } from "@/hooks/redux";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,23 +21,20 @@ const Wrapper = styled.div`
 `;
 
 interface SearchSettingsProps {
-  handleSearch: (search?: string, region?: string) => void;
+  handleSearch: (search: string, region: string) => void;
 }
 
 const SearchSettings = ({ handleSearch }: SearchSettingsProps) => {
-  const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("");
-
-  const debouncedSearch = useDebounce(search, 300);
+  const { search, region } = useAppSelector((state) => state.filter);
 
   useEffect(() => {
-    handleSearch(debouncedSearch, region);
-  }, [debouncedSearch, region]);
+    handleSearch(search, region);
+  }, [search, region]);
 
   return (
     <Wrapper>
-      <Search search={search} setSearch={setSearch} />
-      <Selector options={options} region={region} setRegion={setRegion} />
+      <Search search={search} />
+      <Selector region={region} />
     </Wrapper>
   );
 };

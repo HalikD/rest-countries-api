@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useAppDispatch } from "@/hooks/redux";
+import { setRegion } from "@/store/filter/filterSlice";
+import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -47,17 +49,26 @@ const Option = styled.p`
   }
 `;
 
+const options = [
+  { label: "All", value: "All" },
+  { label: "Africa", value: "Africa" },
+  { label: "America", value: "Americas" },
+  { label: "Asia", value: "Asia" },
+  { label: "Europe", value: "Europe" },
+  { label: "Oceania", value: "Oceania" },
+];
+
 interface SelectorProps {
-  options: { label: string; value: string }[];
   region: string;
-  setRegion: (value: string) => void;
 }
 
-const Selector = ({ options, region, setRegion }: SelectorProps) => {
+const Selector = ({ region }: SelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const dispatch = useAppDispatch();
+
   const handleClick = (value: string) => {
-    setRegion(value);
+    dispatch(setRegion(value));
     setIsOpen(false);
   };
 

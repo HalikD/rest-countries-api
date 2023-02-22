@@ -1,5 +1,9 @@
 import styled from "styled-components";
+import { useState, useCallback } from "react";
+import debounce from "lodash.debounce";
 import { FaSearch } from "react-icons/fa";
+import { useAppDispatch } from "@/hooks/redux";
+import { setSearch } from "@/store/filter/filterSlice";
 
 const Wrapper = styled.label`
   width: 100%;
@@ -28,14 +32,27 @@ const Input = styled.input.attrs({ type: "search", placeholder: "Search for a co
 
 interface SearchProps {
   search: string;
-  setSearch: (value: string) => void;
 }
 
-const Search = ({ search, setSearch }: SearchProps) => {
+const Search = ({ search }: SearchProps) => {
+  const [value, setValue] = useState(search);
+
+  const dispatch = useAppDispatch();
+
+  const debouncedSearch = useCallback(
+    debounce((str: string) => dispatch(setSearch(str)), 300),
+    []
+  );
+
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    debouncedSearch(event.target.value);
+  };
+
   return (
     <Wrapper>
       <FaSearch />
-      <Input value={search} onChange={(e) => setSearch(e.target.value)} />
+      <Input value={value} onChange={changeHandler} />
     </Wrapper>
   );
 };

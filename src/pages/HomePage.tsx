@@ -10,9 +10,11 @@ import { useAppSelector, useAppDispatch } from "@/hooks/redux";
 
 import { countriesSelect } from "@/store/countries/countriesSlice";
 import { fetchAllCountries } from "@/store/countries/countriesAsyncActions";
+import { filterSelect } from "@/store/filter/filterSlice";
 
 const HomePage = () => {
   const { countries, status } = useAppSelector(countriesSelect);
+  const { search, region } = useAppSelector(filterSelect);
   const dispatch = useAppDispatch();
 
   const [filteredCountries, setFilteredCountries] = useState(countries);
@@ -24,7 +26,7 @@ const HomePage = () => {
     dispatch(fetchAllCountries());
   }, []);
 
-  const handleSearch = (search = "", region = "") => {
+  const handleSearch = (search: string, region: string) => {
     let foundCountries;
     if (region === "All" || !region) {
       foundCountries = countries.filter((country) =>
@@ -42,8 +44,8 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    handleSearch();
-  }, [countries]);
+    handleSearch(search, region);
+  }, []);
 
   return (
     <>
