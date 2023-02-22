@@ -8,17 +8,13 @@ import Loader from "@/components/Loader/Loader";
 
 import { useAppSelector, useAppDispatch } from "@/hooks/redux";
 
-import { countriesSelect } from "@/store/countries/countriesSlice";
+import { countriesSelect, setFilteredCountries } from "@/store/countries/countriesSlice";
 import { fetchAllCountries } from "@/store/countries/countriesAsyncActions";
-import { filterSelect } from "@/store/filter/filterSlice";
+import { countryFinder } from "@/utils/countryFinder";
 
 const HomePage = () => {
-  const { countries, status } = useAppSelector(countriesSelect);
-  const { search, region } = useAppSelector(filterSelect);
+  const { countries, filteredCountries, status } = useAppSelector(countriesSelect);
   const dispatch = useAppDispatch();
-
-  const [filteredCountries, setFilteredCountries] = useState(countries);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,25 +23,8 @@ const HomePage = () => {
   }, []);
 
   const handleSearch = (search: string, region: string) => {
-    let foundCountries;
-    if (region === "All" || !region) {
-      foundCountries = countries.filter((country) =>
-        country.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setFilteredCountries(foundCountries);
-      return;
-    }
-
-    foundCountries = countries
-      .filter((country) => country.info["Region"] === region)
-      .filter((country) => country.name.toLowerCase().includes(search.toLowerCase()));
-
-    setFilteredCountries(foundCountries);
+    dispatch(setFilteredCountries(countryFinder(countries, search, region)));
   };
-
-  useEffect(() => {
-    handleSearch(search, region);
-  }, []);
 
   return (
     <>

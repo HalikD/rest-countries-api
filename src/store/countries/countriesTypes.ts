@@ -1,5 +1,6 @@
 export interface CountriesState {
   countries: IAllCountries[];
+  filteredCountries: IAllCountries[];
   status: CountriesStatus;
 }
 
