@@ -55,7 +55,7 @@ interface CardItemProps {
 const CardItem = ({ onClick, img, name, info }: CardItemProps) => {
   return (
     <Wrapper onClick={onClick}>
-      <CardImage src={img} />
+      <CardImage src={img} alt={`flag of ${name}`} />
       <CardInfo>
         <CardName>{name}</CardName>
         <CardInfoList>

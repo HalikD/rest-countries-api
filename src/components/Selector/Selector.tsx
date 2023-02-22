@@ -8,6 +8,7 @@ import { setRegion } from "@/store/filter/filterSlice";
 const Wrapper = styled.div`
   position: relative;
   transition: all 1s;
+  user-select: none;
 `;
 
 const Label = styled.div`

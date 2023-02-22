@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 2rem 1rem;
   box-shadow: var(--shadow);
+  user-select: none;
 
   @media screen and (min-width: 767px) {
     padding: 2rem 3rem;
