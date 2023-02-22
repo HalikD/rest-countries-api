@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { FaSearch } from "react-icons/fa";
+
 import { useAppDispatch } from "@/hooks/redux";
 import { setSearch } from "@/store/filter/filterSlice";
 

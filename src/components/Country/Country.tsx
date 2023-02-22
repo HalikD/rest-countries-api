@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchByCodes } from "@/http/countriesAPI";
 import styled from "styled-components";
-import Button from "../Button/Button";
+
+import Button from "@/components/Button/Button";
+import { fetchByCodes } from "@/http/countriesAPI";
 import { codeToName } from "@/utils/countryProcessing";
 
 const Wrapper = styled.div`

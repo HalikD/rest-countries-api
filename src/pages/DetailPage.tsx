@@ -5,6 +5,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import Country from "@/components/Country/Country";
 import Button from "@/components/Button/Button";
 import Loader from "@/components/Loader/Loader";
+import Error from "@/components/Error/Error";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { fetchOneCountry } from "@/store/countryDetail/contryDetailAsyncActions";
@@ -21,14 +22,16 @@ const DetailPage = () => {
     dispatch(fetchOneCountry(name as string));
   }, [name]);
 
+  if (status === "error") return <Error />;
+
   return (
-    <div>
+    <>
       <Button onClick={() => navigate(-1)}>
         <FaArrowLeft />
         Back
       </Button>
       {status === "loading" ? <Loader /> : country && <Country {...country} />}
-    </div>
+    </>
   );
 };
 

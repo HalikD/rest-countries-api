@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import SearchSettings from "@/components/SearchSettings/SearchSettings";
 import CardList from "@/components/CardList/CardList";
 import CardItem from "@/components/CardItem/CardItem";
 import Loader from "@/components/Loader/Loader";
+import Error from "@/components/Error/Error";
 
 import { countriesSelect, setFilteredCountries } from "@/store/countries/countriesSlice";
 import { fetchAllCountries } from "@/store/countries/countriesAsyncActions";
@@ -25,6 +26,8 @@ const HomePage = () => {
   const handleSearch = (search: string, region: string) => {
     dispatch(setFilteredCountries(countryFinder(countries, search, region)));
   };
+
+  if (status === "error") return <Error />;
 
   return (
     <>

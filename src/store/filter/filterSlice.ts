@@ -4,7 +4,7 @@ import { FilterState } from "./filterTypes";
 
 const initialState: FilterState = {
   search: "",
-  region: "All",
+  region: "",
 };
 
 const filterSlice = createSlice({

@@ -1,8 +1,9 @@
-import { useAppDispatch } from "@/hooks/redux";
-import { setRegion } from "@/store/filter/filterSlice";
 import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import styled from "styled-components";
+
+import { useAppDispatch } from "@/hooks/redux";
+import { setRegion } from "@/store/filter/filterSlice";
 
 const Wrapper = styled.div`
   position: relative;
