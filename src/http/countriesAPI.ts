@@ -1,29 +1,5 @@
 import axios from "axios";
-
-export interface IFetchManyCountries {
-  name: Record<string, string>;
-  capital: string;
-  flags: Record<string, string>;
-  population: number;
-  region: string;
-}
-
-export interface IFetchOneCountry {
-  name: {
-    common: string;
-    official: string;
-    nativeName: Record<string, Record<string, string>>;
-  };
-  capital: string;
-  flags: Record<string, string>;
-  population: number;
-  region: string;
-  subregion: string;
-  tld: string[];
-  currencies: Record<string, Record<string, string>>;
-  languages: Record<string, string>;
-  borders: string[];
-}
+import { IFetchManyCountries, IFetchOneCountry } from "./types";
 
 const BASE_URL = "https://restcountries.com/v3.1/";
 
@@ -41,9 +17,9 @@ export const fetchManyCountries = async () => {
   return data;
 };
 
-export const fetchOneCountry = async (name: string) => {
+export const fetchByName = async (name: string) => {
   const { data } = await axios.get<IFetchOneCountry[]>(ONE_COUNTRY + name + fieldsOneCountry);
-  return data;
+  return data[0];
 };
 
 export const fetchByCodes = async (codes: string[]) => {

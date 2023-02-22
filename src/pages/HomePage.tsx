@@ -6,10 +6,10 @@ import CardList from "@/components/CardList/CardList";
 import CardItem from "@/components/CardItem/CardItem";
 import Loader from "@/components/Loader/Loader";
 
-import { useAppSelector, useAppDispatch } from "@/hooks/redux";
-
 import { countriesSelect, setFilteredCountries } from "@/store/countries/countriesSlice";
 import { fetchAllCountries } from "@/store/countries/countriesAsyncActions";
+import { useAppSelector, useAppDispatch } from "@/hooks/redux";
+
 import { countryFinder } from "@/utils/countryFinder";
 
 const HomePage = () => {

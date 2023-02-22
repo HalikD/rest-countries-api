@@ -1,21 +1,24 @@
-import Country from "@/components/Country/Country";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { fetchOneCountry } from "@/http/countriesAPI";
-import { IOneCountry, processedOneCountry } from "@/utils/countryProcessing";
-import Button from "@/components/Button/Button";
 import { FaArrowLeft } from "react-icons/fa";
 
+import Country from "@/components/Country/Country";
+import Button from "@/components/Button/Button";
+import Loader from "@/components/Loader/Loader";
+
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { fetchOneCountry } from "@/store/countryDetail/contryDetailAsyncActions";
+
 const DetailPage = () => {
-  const [country, setCountry] = useState<IOneCountry | null>(null);
+  const { country, status } = useAppSelector((state) => state.countryDetail);
+
+  const dispatch = useAppDispatch();
 
   const { name } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchOneCountry(name as string)
-      .then((unProcessedData) => processedOneCountry(unProcessedData[0]))
-      .then((processedData) => setCountry(processedData));
+    dispatch(fetchOneCountry(name as string));
   }, [name]);
 
   return (
@@ -24,7 +27,7 @@ const DetailPage = () => {
         <FaArrowLeft />
         Back
       </Button>
-      {country && <Country {...country} />}
+      {status === "loading" ? <Loader /> : country && <Country {...country} />}
     </div>
   );
 };

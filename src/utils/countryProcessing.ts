@@ -1,12 +1,4 @@
-import { IFetchOneCountry, IFetchManyCountries } from "@/http/countriesAPI";
-
-export interface IOneCountry {
-  name: string;
-  img: string;
-  mainInfo: Record<string, string>;
-  altInfo: Record<string, string>;
-  borders: string[];
-}
+import { IFetchOneCountry, IFetchManyCountries } from "@/http/types";
 
 export const processedAllCountries = (data: IFetchManyCountries[]) => {
   return data.map((country) => {
